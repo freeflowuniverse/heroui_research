@@ -31,6 +31,7 @@ body {
   flex: 1;
   height: calc(100vh - var(--header-height) - var(--footer-height));
   overflow: hidden;
+  margin-top: 1.5rem;
 }
 
 .app-footer {
@@ -41,7 +42,7 @@ body {
   bottom: 0;
   background-color: var(--background-color);
   z-index: 100;
-  font-size: smaller;
+  font-size: x-small;
 }
 
 /* Grid layout */
@@ -51,8 +52,6 @@ body {
   gap: 2rem;
   height: 100%;
 }
-
-
 
 /* Sidebar styles */
 .sidebar {

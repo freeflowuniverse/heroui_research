@@ -201,8 +201,8 @@ func main() {
 	})
 
 	// Start server
-	log.Println("Starting server on :3001")
-	if err := app.Listen(":3001"); err != nil {
+	log.Println("Starting server on :3002")
+	if err := app.Listen(":3002"); err != nil {
 		log.Fatalf("Error starting server: %v", err)
 	}
 }
