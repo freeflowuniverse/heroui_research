@@ -1,0 +1,32 @@
+//- sidebar.pug - Navigation sidebar template
+aside.sidebar.left-sidebar#documentation-menu
+  header
+    h4 Content
+    hr
+  nav.is-sticky
+    //- Dynamic section for markdown files
+    details(open)
+      summary Documentation
+      ul
+        | {{range .files}}
+        li
+          a.secondary(href="/{{.Name}}" up-target=".content-area, .right-sidebar" class="{{if and $.activeFile (eq $.activeFile.Name .Name)}}active{{end}}") {{.Title}}
+        | {{else}}
+        li
+          a.secondary(href="/") No files found
+        | {{end}}
+    
+    //- Render sections from sidebar config
+    | {{range .sidebar}}
+    details
+      summary {{.Title}}
+      ul
+        | {{range .Items}}
+        li
+          | {{if .External}}
+          a.secondary(href="{{.Href}}" target="_blank") {{.Title}}
+          | {{else}}
+          a.secondary(href="{{.Href}}" up-target=".content-area, .right-sidebar") {{.Title}}
+          | {{end}}
+        | {{end}}
+    | {{end}}

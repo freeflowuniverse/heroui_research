@@ -1,0 +1,328 @@
+/* Custom variables */
+:root {
+  --sidebar-width: 250px;
+  --content-padding: 2rem;
+  --header-height: 80px;
+  --footer-height: 60px;
+  --text-scale: 0.95;
+  --heading-weight: 500;
+  --body-line-height: 1.7;
+  --heading-line-height: 1.3;
+  --pico-nav-element-spacing-vertical: 0.5rem;
+}
+
+/* Layout styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-size: calc(1rem * var(--text-scale));
+  font-weight: 400;
+  line-height: var(--body-line-height);
+  letter-spacing: 0.01em;
+}
+
+.app-content {
+  flex: 1;
+  height: calc(100vh - var(--header-height) - var(--footer-height));
+  overflow: hidden;
+}
+
+.app-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--secondary);
+  text-align: center;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--background-color);
+  z-index: 100;
+  font-size: smaller;
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr var(--sidebar-width);
+  gap: 2rem;
+  height: 100%;
+}
+
+
+
+/* Sidebar styles */
+.sidebar {
+  padding-right: 1rem;
+  height: 100%;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+}
+
+/* Documentation menu styles */
+#documentation-menu {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+#documentation-menu header {
+  padding-top: 1rem;
+}
+
+#documentation-menu header h4 {
+  margin: 0;
+}
+
+#documentation-menu nav {
+  padding: 0.5rem;
+}
+
+#documentation-menu summary {
+  font-weight: var(--heading-weight);
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+#documentation-menu summary:hover {
+  background-color: var(--primary-hover);
+  color: var(--primary-inverse);
+}
+
+#documentation-menu details[open] > summary {
+  margin-bottom: 0.5rem;
+}
+
+#documentation-menu ul {
+  list-style: none;
+  padding-left: 0.75rem;
+  margin: 0;
+}
+
+/* Content area styling */
+.content-area {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevent content area from scrolling */
+}
+
+.markdown-content {
+  overflow-y: auto !important; /* Force enable scrolling for markdown content */
+  padding: 1.5rem;
+  background-color: var(--card-background-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--card-box-shadow);
+  height: calc(100vh - var(--header-height) - var(--footer-height) - 3rem); /* Fixed height to ensure scrolling works */
+  color: var(--h1-color);
+}
+
+/* Right sidebar specific styling */
+.right-sidebar .anchor-link {
+  padding-left: 0.5rem;
+  font-size: calc(0.85rem * var(--text-scale));
+  font-weight: 400;
+}
+
+.right-sidebar header {
+  padding-top: 1rem;
+}
+
+.right-sidebar .anchor-link[data-level="2"] {
+  padding-left: 1rem;
+}
+
+.right-sidebar .anchor-link[data-level="3"] {
+  padding-left: 1.5rem;
+}
+
+.right-sidebar .anchor-link[data-level="4"] {
+  padding-left: 2rem;
+}
+
+.right-sidebar .anchor-link[data-level="5"] {
+  padding-left: 2.5rem;
+}
+
+.right-sidebar .anchor-link[data-level="6"] {
+  padding-left: 3rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: background-color 0.2s;
+  font-size: calc(0.85rem * var(--text-scale));
+  font-weight: 400;
+}
+
+.sidebar a:hover {
+  background-color: var(--primary-hover);
+  color: var(--primary-inverse);
+}
+
+.sidebar a.active {
+  background-color: var(--primary);
+  color: var(--primary-inverse);
+}
+
+.markdown-content {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.markdown-content h1 {
+  line-height: var(--heading-line-height);
+  font-weight: var(--heading-weight);
+  margin-bottom: 1em;
+}
+
+.markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+  line-height: var(--heading-line-height);
+  font-weight: var(--heading-weight);
+  margin-bottom: 0.5em;
+  font-size: calc(1.5rem * var(--text-scale));
+}
+
+.markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+  font-size: calc(1.25rem * var(--text-scale));
+}
+
+.markdown-content p {
+  margin-bottom: 0.5em;
+  font-size: calc(0.9rem * var(--text-scale));
+}
+
+.markdown-content ul, .markdown-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+
+.markdown-content pre {
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: calc(0.9rem * var(--text-scale));
+}
+
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(0.95rem * var(--text-scale));
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: var(--sidebar-width) 1fr;
+  }
+  
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .content-area {
+    padding: 1rem;
+  }
+  
+  .right-sidebar {
+    display: none;
+  }
+  
+  .left-sidebar {
+    order: 0;
+  }
+  
+  .content-area {
+    order: 1;
+  }
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--primary-inverse);
+  text-align: center;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.back-to-top:hover {
+  background-color: var(--primary-hover);
+}
+
+.back-to-top.visible {
+  display: block;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Unpoly transitions */
+.up-current {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.up-destroying {
+  opacity: 0;
+}
+
+/* Loading indicator */
+.up-loading {
+  position: relative;
+}
+
+.up-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
